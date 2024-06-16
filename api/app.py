@@ -46,9 +46,11 @@ def health_protected():
 def login():
   data = request.get_json()
   username = data.get("username")
+  # email = data.get("email")
   password = data.get("password")
 
   user = UserModel.query.filter_by(username=username).one_or_none()
+  # email = UserModel.query.filter_by(email=email).one_or_none()
   if not user:
     return jsonify({"error": "Invalid username or password"}), 401
   
