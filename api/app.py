@@ -66,18 +66,19 @@ def login():
 @app.route("/register", methods=["POST"])
 def register():
   data = request.get_json()
-  email = data.get("email")
+  # email = data.get("email")
   username = data.get("username")
   password = data.get("password")
 
   if UserModel.query.filter_by(username=username).one_or_none():
     return jsonify({"error": "Username already exists"}), 400
 
-  if UserModel.query.filter_by(email=email).one_or_none():
-    return jsonify({"error": "Email already exists"}), 400
+  # if UserModel.query.filter_by(email=email).one_or_none():
+  #   return jsonify({"error": "Email already exists"}), 400
 
   hashed_password = hash_password(password)
-  user = UserModel(email=email, username=username, password=hashed_password, created_at=datetime.datetime.now())
+  # Include email parameter if used below.
+  user = UserModel(username=username, password=hashed_password, created_at=datetime.datetime.now())
   db.session.add(user)
   db.session.commit()
 
