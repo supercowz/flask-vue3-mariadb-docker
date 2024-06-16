@@ -1,12 +1,12 @@
 version: '3'
 services:
   app-db:
-    image: "mariadb:10.5"
+    image: "mariadb:11.4.2"
     container_name: app-db
-    volumes:
-      - data:/var/lib/mysql
     ports:
       - 3306:3306
+    volumes:
+      - data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
@@ -28,6 +28,6 @@ services:
       - API_URL={API_URL}
     ports:
       - 8080:8080
-      
-volume:
+
+volumes:
   data:
