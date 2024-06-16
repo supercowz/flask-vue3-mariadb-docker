@@ -23,7 +23,7 @@ Everything is dockerized and ready for production.
 1. ```cd api && python3 -m venv venv```
 2. ```source venv/bin/activate```
 3. ```pip install -r requirements.txt```
-4. ```flask db migrate```
+4. ```flask db upgrade```
 4. ```deactivate```
 4. ```cd ..```
 5. ```cd web && npm install```
