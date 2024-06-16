@@ -3,8 +3,8 @@
     <div class="wrapper">
       <nav class="nav-primary">
         <RouterLink to="/" class="brand-logo">MySite</RouterLink>
-        <ul>
-          <li><RouterLink to="/">Home</RouterLink></li>
+        <ul v-if="isLoggedIn">
+          <li @click="logout">Logout</li>
         </ul>
       </nav>
     </div>
@@ -16,6 +16,37 @@
 </template>
 
 <script setup>
+import { useAuthStore } from './stores/auth';
+import { useRouter } from 'vue-router';
+import { onMounted, ref, watchEffect } from 'vue';
+
+const authStore = useAuthStore();
+const router = useRouter();
+const isLoggedIn = ref(false);
+
+const checkLoginStatus = async () => {
+  isLoggedIn.value = authStore.loggedIn;
+
+  if (!isLoggedIn.value) {
+    if (router.currentRoute.value.name !== 'login' && router.currentRoute.value.name !== 'register') {
+      router.push({ name: 'login' });
+    }
+  }
+};
+
+const logout = async () => {
+  await authStore.logout();
+  router.push({ name: 'login' });
+};
+
+onMounted(() => {
+  checkLoginStatus();
+});
+
+watchEffect(() => {
+  checkLoginStatus();
+});
+
 </script>
 
 <style scoped>
@@ -25,6 +56,8 @@
   border-bottom: 1px solid #e1e1e1;
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
+  max-height: 65px;
 }
 
 .nav-primary {
@@ -33,13 +66,14 @@
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
+  margin: 10px 10px;
 }
 
 .nav-primary .brand-logo {
   font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
-  color: #333;
+  color: #222;
 }
 
 .nav-primary ul {
@@ -51,16 +85,17 @@
 
 .nav-primary ul li {
   margin-left: 1rem;
+  margin-bottom: 0;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
 }
 
 .nav-primary ul li a {
   text-decoration: none;
-  color: #333;
-  padding: 0.5rem 1rem;
-  transition: background 0.3s;
+  color: #222;
 }
 
-.nav-primary ul li a:hover {
+.nav-primary ul li:hover {
   background: #e1e1e1;
 }
 </style>
