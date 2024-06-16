@@ -1,7 +1,9 @@
 # Overview
-A starter project for a basic web application.
+A starter project for a basic web application with a user login and registration system and basic styling.
 
 Vue3 frontend with a Flask API backend with a MariaDB.
+
+For CSS styling, there is a lightweight boilerplate I use called [Skeleton](http://getskeleton.com/)
 
 Everything is dockerized and ready for production.
 
