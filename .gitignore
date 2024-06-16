@@ -1,0 +1,6 @@
+global-exclude .DS_Store
+global-exclude *.pyc
+global-exclude __pycache__/*
+global-exclude venv/*
+global-exclude .env
+global-exclude node_modules/*
