@@ -5,9 +5,6 @@
         <RouterLink to="/" class="brand-logo">MySite</RouterLink>
         <ul>
           <li><RouterLink to="/">Home</RouterLink></li>
-          <li><RouterLink to="/about">About</RouterLink></li>
-          <li><RouterLink to="/services">Services</RouterLink></li>
-          <li><RouterLink to="/contact">Contact</RouterLink></li>
         </ul>
       </nav>
     </div>
