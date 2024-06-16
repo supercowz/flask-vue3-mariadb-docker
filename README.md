@@ -11,6 +11,11 @@ Everything is dockerized and ready for production.
 
 1. ```python3 setup.py```
 
+## Setup the database:
+
+1. ```docker-compose build app-db```
+2. ```docker-compose up -d app-db```
+
 ## Install dependencies:
 
 1. ```cd api && python3 -m venv venv```
@@ -20,11 +25,6 @@ Everything is dockerized and ready for production.
 4. ```deactivate```
 4. ```cd ..```
 5. ```cd web && npm install```
-
-## Setup the database:
-
-1. ```docker-compose build app-db```
-2. ```docker-compose up -d app-db```
 
 ## Run the application:
 Open two terminal windows.
